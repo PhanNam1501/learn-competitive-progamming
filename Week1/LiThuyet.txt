@@ -1,0 +1,466 @@
+Competitive Programming 15 
+
+Giai đoạn 1 (6 tháng đầu - những kiến thức mà một học sinh chuyên tin nên biết) 
+
+Tháng 1: (Basic Data Structure) 
+
+- Buổi 1: Giới thiệu khóa học, thuật toán là gì, độ phức tạp thuật toán, vector, sort 
+- Buổi 2: Stack 
+- Buổi 3: Queue / Deque 
+- Buổi 4: Heap
+- Buổi 5: Binary Search Tree (Set / Multiset) 
+- Buổi 6: Binary Search Tree (Map / Multimap) 
+- Buổi 7: bitset 
+- Buổi 8: Contest  
+
+
+Tháng 2: (Basic Techniques) 
+
+- Buổi 1: Bit manipulation 
+- Buổi 2: 2 pointers 
+- Buổi 3: Erathones Sieve  
+- Buổi 4: Binary Search / Binary Search on the answer  
+- Buổi 5: Ternary Search 
+- Buổi 6: Greedy 
+- Buổi 7: Recursion / Backtracking 
+- Buổi 8: Contest 
+
+
+Tháng 3: (Basic Dynamic Programming) 
+
+- Buổi 1: Divide and conquer
+- Buổi 2: Giới thiệu về quy hoạch động + một số bài toán cổ điển 
+- Buổi 3: Quy hoạch động nâng cao (Level 1) 
+- Buổi 4: Quy hoạch động nâng cao (Level 2) 
+- Buổi 5: Quy hoạch động nâng cao (Level 3)
+- Buổi 6: Đổi biến số trong quy hoạch động 
+- Buổi 7: Một số bài tập về đổi biến số 
+- Buổi 8: Contest 
+
+
+Tháng 4: (Basic Graph Theory) 
+
+- Buổi 1: Giới thiệu về đồ thị + thuật toán Dfs 
+- Buổi 2: Topological Sort 
+- Buổi 3: Joints and bridges 
+- Buổi 4: Strongly Connected Components 
+- Buổi 5: Bfs 
+- Buổi 6: Dijkstra + Heap 
+- Buổi 7: Disjoint set union + Kruskal 
+- Buổi 8: Contest 
+
+
+Tháng 5: (Basic Mathematics) 
+
+- Buổi 1: Combinatorics 
+- Buổi 2: Làm bài tập về tổ hợp 
+- Buổi 3: Quy hoạch động + tổ hợp 
+- Buổi 4: Xác suất 
+- Buổi 5: Kỳ vọng 
+- Buổi 6: Lý thuyết trò chơi + Quy hoạch động trò chơi 
+- Buổi 7: Một số phương pháp chứng minh toán học 
+- Buổi 8: Contest 
+
+
+Tháng 6: (Ôn tập kiến thức)
+
+
+Giai đoạn 2 (Dành cho những bạn muốn đạt thành tích cao trong các kỳ thi)
+
+Tháng 7: (Advanced Data Structure)
+
+- Buổi 1: Segment tree / merge sort tree 
+- Buổi 2: Một số kỹ thuật trên segment tree 
+- Buổi 3: Persistent Segment tree / Dsu rollback 
+- Buổi 4: Fenwick tree / Fenwick tree 2D 
+- Buổi 5: Trie
+- Buổi 6: Sparse Table 
+- Buổi 7: Suffix Array 
+- Buổi 8: Contest 
+
+
+Tháng 8: (Advanced Techniques)
+
+- Buổi 1: Meet in the middle 
+- Buổi 2: Square Root Decomposition 
+- Buổi 3: KMP / Hashing 
+- Buổi 4: Sweepline 
+- Buổi 5: Merge Small to Large 
+- Buổi 6: Convex hull trick 
+- Buổi 7: Randomize Techniques 
+- Buổi 8: Contest 
+
+
+Tháng 9: (Advanced Dynamic Programming)
+
+- Buổi 1: Dp + bitmask 
+- Buổi 2: Kỹ thuật SOS (Sum Over subset)
+- Buổi 3: Dp + digit 
+- Buổi 4: Dp + matrix multiplication 
+- Buổi 5: Dp on tree 
+- Buổi 6: Dp optimize by bitset 
+- Buổi 7: Dp optimize by divide and conquer 
+- Buổi 8: Contest 
+
+
+Tháng 10: (Advanced Graph Theory) 
+
+- Buổi 1: Maximum Flow / Maximum Matching 
+- Buổi 2: Minimum Cut 
+- Buổi 3: Euler Tour 
+- Buổi 4: Lowest Common ancestor 
+- Buổi 5: Heavy Light Decomposition 
+- Buổi 6: Centroid Decomposition 
+- Buổi 7: Two SAT 
+- Buổi 8: Contest 
+
+
+Tháng 11: (Advanced Mathmeatics) 
+
+- Buổi 1: Game theory (Grundy function) 
+- Buổi 2: Phi hàm euler 
+- Buổi 3: Inclusive - Exclusive + Mobius function 
+- Buổi 4: Extended Euclide Algorithm 
+- Buổi 5: Chinese Remainder Theorem 
+- Buổi 6: Geometry 
+- Buổi 7: Calculus 
+- Buổi 8: Contest 
+
+Tháng 12: Ôn tập toàn bộ 
+
+
+Thuật toán là gì ? 
+
+Má sai đi chợ 
+
+
+    Hàng thịt     -    Hàng trứng     - Hàng rau 
+
+
+Thuật toán là một quá trình ta suy nghĩ để giải quyết một vấn đề 
+
+
+Input  ---->   Thuật toán  ------>  Output  
+
+
+
+Độ phức tạp thuật toán 
+
+
+Độ phức tạp thuật toán là gì 
+
+
+Thuật toán A tệ hơn so với thuật toán B ???? 
+
+Độ phức tạp thuật toán là một đại lượng dùng để ước lượng về độ hiệu quả của một thuật toán được đưa ra. 
+
+3 loại độ phức tạp 
+
+. BigO: Thời gian mà thuật toán chạy trong trường hợp tệ nhất 
+
+. Big Omega: Thời gian mà thuật toán chạy trong trường hợp tốt nhất 
+
+. Big Theta: Thời gian thuật toán chạy trong trường hợp trung bình 
+
+
+
+Một vài độ phức tạp tiêu biểu 
+
+
+Độ phức tạp hằng số ( O(1) ): 
+
+    Đây là độ phức tạp mà khi thuật toán chỉ thực hiện một vài phép tính. 
+
+    Ví dụ: Kiểm tra số N có phải là số chẵn hay không ? 
+
+    Nhập 3 số a, b, c. Kiểm tra a, b, c có phải là độ dài 3 cạnh tam giác hay không ? 
+
+
+Độ phức tạp tuyến tính  (  O(N)  ): 
+
+    Nhập số N 
+    Duyệt i: 1 -> N, i = i + 1 
+      sum = sum + i  
+
+
+Độ phức tạp đa thức    ( O(N^c)  ): 
+
+    Là độ phức tạp khi ta có c vòng lặp tuyến tính theo N lồng nhau 
+
+    Nhập số N 
+    Duyệt i: 1 -> N, i = i + 1 
+       Duyệt j: 1 -> N, j = j + 1 
+          sum = sum + i + j 
+
+
+    i = 1, j chạy N lần 
+    i = 2, j chạy N lần 
+    ....
+    i = N, j chạy N lần 
+
+    tổng chi phí = N + N + N + ... + N = N^2 
+
+
+
+Một chiếc máy tính bình thường, trong 1 giây chạy khoảng 100.000.000 phép tính 
+
+
+Thuật toán A: 
+
+N = 1.000.000 
+
+for i: 1 -> N, i = i + 2                1.000.000 / 2 = 500.000 
+   sum1 = sum1 + i 
+
+
+for i: 1 -> N                           1.000.000^2 ~ 10^12  phép tính 
+  for j: 1 -> N 
+    sum2 = sum2 + i + j 
+
+
+
+N * logN 
+
+1.000.000 
+logN ~ 18 
+
+18.000.000 phép tính 
+
+Khi đề cho ta giới hạn thời gian là 2 giây ====> ta cần phải thiết kế thuật toán nào đó sao cho số phép toán ko vượt quá 200.000.000 phép tính. 
+
+
+vector 
+
+Mảng tĩnh: Là mảng mà số lượng phần tử được cố định ngay từ phần khai báo. 
+
+int a[100]; 
+
+Mảng động: Là mảng mà có thể co - dãn kích thước dựa theo yêu cầu của người dùng. 
+
+vector là mảng động 
+
+Khai báo 
+
+  #include <vector> 
+
+Cú pháp: 
+
+  vector < <kiểu dữ liệu> > <tên vector>; 
+
+Ví dụ: 
+
+#include <vector> 
+using namespace std; 
+vector <long long> myvector; 
+int main() {
+  return 0; 
+}
+
+Một số hàm trong vector 
+
+. hàm resize(<kích thước của vector>) : Thay đổi kích thước của vector dựa trên kích thước ta truyền vào 
+ 
+Ví dụ: 
+
+#include <vector> 
+using namespace std; 
+vector <long long> myvector; 
+int main() {
+  myvector.resize(5); 
+  myvector[0] = 4;  
+  myvector[1] = 2;  
+  myvector[2] = 6;  
+  myvector[3] = 10; 
+  // myvector = {4, 2, 6, 10, 0}  
+  return 0; 
+}
+
+
+. hàm push_back(<giá trị>) : thêm một phần tử vào đằng sau vector 
+
+
+Ví dụ: 
+
+#include <vector> 
+using namespace std; 
+vector <long long> myvector; 
+int main() {
+  myvector.resize(4); 
+  myvector[0] = 4;  
+  myvector[1] = 2;  
+  myvector[2] = 6;  
+  myvector[3] = 10; 
+  // myvector = {4, 2, 6, 10, 0}  
+  myvector.push_back(15); 
+  // myvector = {4, 2, 6, 10, 0, 15}  
+  return 0; 
+}
+
+
+. hàm back() : trả về số cuối cùng trong vector. LƯU Ý !!! Nếu vector rỗng thì hàm back() sẽ báo lỗi 
+
+Ví dụ: 
+
+#include <vector> 
+using namespace std; 
+vector <long long> myvector; 
+int main() {
+  myvector.resize(4); 
+  myvector[0] = 4;  
+  myvector[1] = 2;  
+  myvector[2] = 6;  
+  myvector[3] = 10; 
+  // myvector = {4, 2, 6, 10, 0}  
+  myvector.push_back(15); 
+  // myvector = {4, 2, 6, 10, 0, 15}  
+  cout << myvector.back(); // xuất ra số 15 
+  return 0; 
+}
+
+. hàm pop_back() : xóa số cuối cùng trong vector. LƯU Ý !!! Nếu vector rỗng thì hàm pop_back() sẽ báo lỗi 
+
+Ví dụ: 
+
+#include <vector> 
+using namespace std; 
+vector <long long> myvector; 
+int main() {
+  myvector.resize(4); 
+  myvector[0] = 4;  
+  myvector[1] = 2;  
+  myvector[2] = 6;  
+  myvector[3] = 10; 
+  // myvector = {4, 2, 6, 10, 0}  
+  myvector.push_back(15); 
+  // myvector = {4, 2, 6, 10, 0, 15}  
+  myvector.pop_back(); 
+  // myvector = {4, 2, 6, 10, 0}
+  cout << myvector.back(); // xuất ra số 0
+  return 0; 
+}
+
+
+. Hàm size() : trả về số lượng phần tử trong vector 
+
+
+Ví dụ: 
+
+#include <vector> 
+using namespace std; 
+vector <long long> myvector; 
+int main() {
+  myvector.resize(4); 
+  myvector[0] = 4;  
+  myvector[1] = 2;  
+  myvector[2] = 6;  
+  myvector[3] = 10; 
+  // myvector = {4, 2, 6, 10, 0}  
+  myvector.push_back(15); 
+  // myvector = {4, 2, 6, 10, 0, 15}  
+  myvector.pop_back(); 
+  // myvector = {4, 2, 6, 10, 0}
+  cout << myvector.back(); // xuất ra số 0
+  cout << (int) myvector.size(); // xuất ra số 5 
+  return 0; 
+}
+
+
+. Hàm empty() : trả về true / false tương ứng là vector đã rỗng hoặc chưa rỗng 
+
+. Hàm clear() : xóa toàn bộ các phần tử trong vector 
+
+Hàm sort 
+
+Hàm sắp xếp là hàm có nhiệm vụ sắp xếp các phần tử trong dãy số tăng dần / giảm dần  / theo yêu cầu của người dùng. 
+
+hàm sort được tổ chức bằng thuật toán merge sort, độ phức tạp của hàm sort: O(NlogN) với N là số lượng phần tử trong dãy số.
+
+
+a = 5 8 2 2 6 4 1 3         // 8 phần tử ====> chi phí: 8 * log8 = 8 * 3 = 24 phép tính 
+
+    1 2 2 3 4 5 6 8 
+
+
+dãy số có 1.000.000 phần tử ====> hàm sort có số thao tác : 1.000.000 * log(1.000.000)  ~ 18.000.000 phép tính 
+
+
+Khai báo: 
+
+#include <algorithm> 
+
+
+Cú pháp: 
+
+sort(con trỏ bắt đầu, con trỏ kết thúc);  // mặc định hàm sort là hàm sắp xếp tăng dần 
+
+sắp xếp a [l ... r] : gọi sort(a + l, a + r + 1) 
+
+int a[10] = {4, 2, 9, 2, 6, 5, 8, 1, 4, 3}
+
+sort(a + 2, a + 9); 
+
+
+a = {4, 2, 1, 2, 4, 5, 6, 8, 9, 3}
+
+sort(a, a + 10); 
+
+a = {1, 2, 2, 3, 4, 5, 6, 8, 9}
+
+
+Ta muốn sắp xếp dãy số a sao cho: số lẻ thì đứng trước, số chẵn thì đứng sau. Số lẻ tăng dần, số chẵn thì giảm dần 
+
+bool compare(int a, int b) {
+  nếu (a và b cùng lẻ): 
+    nếu a < b: return true 
+    else: return false 
+  else nếu (a và b cùng chẵn): 
+    nếu a > b: return true 
+    else: return false 
+  else nếu (a và b khác  tính chẵn lẻ): 
+    nếu a lẻ: return true 
+    else: return false     
+}
+
+sort(a, a + 10, compare);
+
+-------------------------------------------------------------------------------------
+
+Watermelon: 
+
+Cho một trái dưa hấu có W ký. Ta cần kiểm tra có thể chia trái dưa hấu này thành 2 phần sao cho mỗi phần là số chẵn. 
+
+Nếu chia được thì in ra YES, ngược lại in ra NO 
+
+W = 8 
+
+YES 
+
+8 --> 2 và 6 
+8 --> 4 và 4 
+8 --> 6 và 2 
+
+
+
+W = 10  ===> 4 và 6 
+
+W = 100  ===> 30 và 70 
+
+W = 9  ===> ...... 
+
+Nếu W là số chẵn 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

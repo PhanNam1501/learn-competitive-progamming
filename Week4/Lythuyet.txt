@@ -1,0 +1,233 @@
+Shortest DNA 
+
+Cho một chuỗi DNA gồm 4 loại ký tự 'A', 'C', 'G' và 'T'. 
+
+Hãy tìm một chuỗi có độ dài ngắn nhất mà KHÔNG PHẢI là chuỗi con của chuỗi ADN này 
+
+
+Chuỗi con của một chuỗi là chuỗi được tạo ra bằng việc xóa đi một vài ký tự trong chuỗi gốc và các ký tự còn lại vẫn giữ nguyên thứ tự 
+
+
+
+s = AGGCTGAGCGT 
+
+===> TTT 
+
+Ta sẽ giữ lại một vài chữ cái trong chuỗi để ra được chuỗi con   
+
+Giả sử kết quả là ans có độ dài là l 
+
+====> ans [1 ... l - 1] sẽ là chuỗi con của chuỗi gốc ban đầu. Còn ans[l] là ký tự nào đó để bảo đảm ans không phải là chuỗi con. 
+
+
+
+s = CCGGGCTGGCCGTGTG  A   GTCCACGTGTCCCGAAGT 
+
+
+Q['A'] =  32 ,  33 
+Q['C'] =  20  ......
+Q['T'] =  
+Q['G'] =  18 ...... 
+
+
+ans = AAT   
+
+-----------------------------------------------------------------------------------------------
+
+Credit 
+
+Có N môn học, môn thứ i có độ khó là a[i] và có số tín chỉ là b[i] 
+
+Ta sẽ chọn k môn học sao cho tổng số tín chỉ >= C 
+
+Khi ta học theo trình tự các môn i1 -> i2 -> i3 -> .... -> ik 
+
+Ta xét "chênh lệch độ khó" giữa 2 môn trước và sau là | độ khó môn trước - độ khó môn sau | 
+
+Độ khó của việc chọn ra k môn học = max các chênh lệch độ khó giữa 2 môn liên tục 
+
+Hỏi độ khó tối thiểu của việc chọn môn học là bao nhiêu ???? 
+
+
+N = 7,  C = 20  
+
+a = 4 9 6 4 5 10 3
+b = 7 2 6 8 7 12 6 
+
+Chọn môn 2 -> môn 5 -> môn 1 -> môn 3 
+
+<9, 2>  --> <5, 7>   -->  <4, 7>  --> <6, 6> 
+
+      4             1             2  
+       
+
+1 <= N <= 100000 
+1 <= C <= 10^9 
+
+        x x x        
+a = 3 4 4 5 6 9 10 
+b = 6 7 8 7 6 2 12 
+
+Nhận xét 1: Ta nên học theo hướng là 2 môn liên tục nên có độ khó gần với nhau  =====> ta sẽ sắp xếp các môn học tăng dần theo độ khó 
+
+Nhận xét 2: Ta nên chọn một danh sách gồm các môn học LIÊN TỤC 
+
+dq =   2, 4 
+
+Ta sử dụng deque sẽ chứa vị trí i - 1 QUAN TRỌNG trong việc lấy số lớn nhất khi ta có các môn học liên tục 
+
+Khi ta có i, ta lưu trữ i - 1 
+
+Nếu ta dịch l -> l + 1  ====> ta cần phải bỏ đi "sự đóng góp" của l  ====> bỏ đi vị trí l - 1 trong dq 
+
+Mã giả 
+
+Sắp xếp các môn học <a[i], b[i]> tăng dần theo a[i] 
+
+dq 
+sum = 0 
+l = 1 
+
+Duyệt i: 1 -> N 
+  sum += b[i] 
+  nếu i > 1 
+    while dq khác rỗng và a[dq.back() + 1] - a[dq.back()] <= a[i] - a[i - 1] 
+      dq.pop_back() 
+    dq.push_back(i - 1) 
+  while sum >= C                
+    nếu sum - b[l] >= C 
+      sum -= b[l] 
+      nếu dq khác rỗng và dq.front() == l - 1: 
+        dq.pop_front() 
+      l++ 
+    else: 
+      break      
+  ans = min(ans, a[dq.front() + 1] - a[dq.front()])   
+
+-----------------------------------------------------------------------------------------------
+
+Heap 
+
+Heap là một cấu trúc dữ liệu được tổ chức dưới dạng cây nhị phân đầy đủ. 
+
+Heap có 2 loại là Heap max và Heap min 
+
+Khi ta có một tập các phần tử, nếu ta đưa vào heap max, số đầu tiên ta lấy được sẽ là số lớn nhất. Nếu ta đưa vào heap min, số đầu tiên
+
+ta lấy được sẽ là số nhỏ nhất. 
+
+
+Cây heap sẽ được tổ chức: Nút gốc của một cây con sẽ là số mang giá trị lớn nhất (hoặc nhỏ nhất) trên toàn bộ cây con đó. 
+
+. Thêm một số vào heap  (O(logN)) 
+. Lấy số lớn nhất (hoặc nhỏ nhất)  (O(1)) 
+. Xóa số lớn nhất (hoặc nhỏ nhất)  (O(logN)) 
+
+---------------------------------------------------------------------------------
+
+Hàng đợi ưu tiên (priority queue) 
+
+Là cấu trúc dữ liệu mà được tổ chức bên dưới bằng cây max heap 
+
+Khai báo 
+
+#include <queue>  
+
+Cú pháp: 
+
+priority_queue < <kiểu dữ liệu> > <tên pq>;    
+
+Ví dụ: 
+
+priority_queue <int> pq;     // max heap 
+
+
+Muốn yêu cầu min heap 
+
+#include <queue> 
+#include <vector> 
+#include <functional> 
+
+Cú pháp: 
+
+priority_queue < <kiểu dữ liệu>,  vector < <kiểu dữ liệu> >,  greater < <kiểu dữ liệu> > > <tên pq>; 
+
+Ví dụ: 
+
+priority_queue <long long, vector <long long>, greater <long long>> pqMin;   // min heap 
+
+Một số hàm trong priority_queue 
+
+. Hàm push(<giá trị>): Thêm một giá trị vào priority_queue   (Độ phức tạp: O(logN)) 
+
+Ví dụ: 
+
+#include <queue> 
+
+priority_queue <int> pq; 
+
+int main() {
+  pq.push(5);
+  pq.push(4);
+  pq.push(9);
+  pq.push(2); 
+  return 0; 
+}
+
+
+. Hàm top() : trả về số lớn nhất (hoặc nhỏ nhất). Lưu ý: hàm top() sẽ báo lỗi nếu heap rỗng . Độ phức tạp O(1)
+
+
+#include <queue> 
+
+priority_queue <int> pq; 
+
+int main() {
+  pq.push(5);
+  pq.push(4);
+  pq.push(9);
+  cout << pq.top();  // xuất ra số 9 
+  pq.push(2); 
+  return 0; 
+}
+
+
+
+. Hàm pop() : xóa số lớn nhất (hoặc nhỏ nhất). Lưu ý: hàm pop() sẽ báo lỗi nếu heap rỗng . Độ phức tạp O(logN)
+
+
+#include <queue> 
+
+priority_queue <int> pq; 
+
+int main() {
+  pq.push(5);
+  pq.push(4);
+  pq.push(9);
+  cout << pq.top();  // xuất ra số 9
+  pq.pop();  
+  pq.push(2);
+  cout << pq.top();  //   xuất ra số 5 
+  return 0; 
+}
+
+
+. Hàm empty(): trả về true / false nếu priority_queue rỗng 
+
+. Hàm size(): trả về kích thước của priority queue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

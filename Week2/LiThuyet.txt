@@ -1,0 +1,25 @@
+Stack - LIFO
+Lưu ý: Không có khái niệm chỉ số trong stack
+
+#include <stack>
+
+Cú pháp:
+
+stack < kiểu dữ liệu > <tên stack>;
+
+Ví dụ:
+
+#include <stack>
+stack <int> mystack;
+
+Hàm push: thêm 1 giá trị vào trên cùng của stack.
+
+myStack.push(5);
+
+Hàm top: lấy giá trị trên cùng của stack
+
+Hàm pop: xóa giá trị trên cùng của stack
+
+Hàm empty: trả về true hoặc false nếu stack rỗng
+
+Hàm size: xuất ra số lượng phần tử trong stack

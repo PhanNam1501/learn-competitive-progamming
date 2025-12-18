@@ -1,0 +1,34 @@
+1. Leetcode: 394. Decode String
+Tại bài này có 1 đoạn xử lý khá hay:
+Đó chính là:
+        if unicode.IsDigit(ch) {
+			n := int(ch - '0')
+			if hasNum {
+				num = num*10 + n
+			} else {
+				num = n
+				hasNum = true
+			}
+		} else if ch == '[' {
+			numStack = append(numStack, num)
+			stack = append(stack, "[")
+			num = 0
+			hasNum = false
+        }
+ở đây phải lấy ra các số từ String để xử lý đoạn dưới: 
++ nếu là "100[" thì phần 100 nó sẽ xử lý theo kiểu lấy từ số 1 nếu mà vẫn có số tiếp 
+thì nhân với 10 và cộng số sau, nó sẽ thành: 1 * 100 + 0 * 10 + 0 * 1
++ nếu mà gặp "[" thì sẽ tắt hasNum và chạy lại từ đầu
+
+2. Leetcode: 456. 132 Pattern
+Với bài này giả sử cho ba số a, b, c: nếu a < c < b thì return true
+Ở đây bài toán là true and false tức là chỉ cần đúng 1 trường hợp là được, nên chúng ta 
+nên tư duy theo kiểu tối ưu bài toán nhất tức là :
+Ở đây cta nên chạy ngược từ dưới lên với với c lưu vào third còn b luôn đẩy vào stack, 
+nếu có số nào lớn hơn b thì b thành số đó, b bỏ ra khỏi stack và gán vào c
+Lúc đó nếu chỉ cần thấy số nào nhỏ hơn c thì sẽ return true.
+
+3.Leetcode: 636. Exclusive Time of Functions
+Ta dùng công thức: 
++ nếu là start : res[id of top stack] += current - prev => prev = current      
++ end: res[id of top stack] += current - prev + 1 -> prev = t + 1
