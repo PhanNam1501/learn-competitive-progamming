@@ -26,9 +26,6 @@ int main() {
     sort(A.begin(), A.end());
     sort(B.begin(), B.end());
 
-    priority_queue<Node, vector<Node>, Cmp> pq;
-    set<pair<int,int>> visited;
-    int cnt = 0;
 
     pq.push({A[0] + B[0], 0, 0});
     visited.insert({0, 0});

@@ -1,0 +1,63 @@
+Binary Search Tree:
+Các nút thuộc cây con bên trái luôn nhỏ hơn giá trị các nút còn lại
+Các nút thuộc cây con bên phải luôn lớn hơn giá trị cảu nút còn lại
+
+
+Một số thao tác 
++ Thêm 1 giá trị
++ Tìm kiếm 1 giá trị
++ xóa 1 giá trị
+
+---------------------------------------------------------------------
+
+Balanced Binary Search Tree
+Là cây Binary Search Tree có tích hợp vài phép xoay cây
+chênh lệch chiều cao 2 cây ko đc lớn hơn 1
+
+avl Tree
+red black Tree
+
+---------------------------------------------------------------------
+
+set/multiset
+
+set: cấu trúc dữ liệu được tổ chức dưới dạng 1 tập hợp và bên dưới được tổ chức bỏi cây 
+Red Black Tree
+
+Lưu ý: set ko chứa các số giống nhau
+
+Khai báo
+#include <set>
+set <long long> mySet;
+
+một số hàm trong set
++ insert ( giá trị )
+mySet.insert(4);
+mySet.insert(6);
+mySet.insert(8);
+
++ find (giá trị): trả về địa chỉ con trỏ trỏ đến ô có chứa giá trị tương ứng, nếu ko tồn tại sẽ trả về set.end()
+
+set <long long>>::iterator it = mySet.find(6);
+if (it ==mySet.end()) {
+    ko ton tai
+} else {
+    mySet.erase(it);
+}
+
++ erase(<địa chỉ con trỏ): xóa node có địa chỉ con trỏ tương ứng trong BST:
+Nếu địa chỉ = mySet.end() -> lỗi
+
++ upper_bound(<giá trị>): trả về địa trỉ con trỏ trỏ đến phần tử mang giá trị nhỏ nhất > giá trị đang xét
+Nếu ko tồn tại trả về địa chỉ mySet.end()
+Xuất ra là cout << *it;
+
++ lower_bound(<giá trị>): tương tự trả về giá trị con trỏ mang đến phần tử nhỏ nhất  >= giá trị phần tử đang xét
+
++ clear(): Xoas
++ empty(): kierm tra co rong ko
++ size(): trả về số lượng phần tử
++ swap(<set khác>): đổi chỗ 2 set cho nhau
+
+
+
