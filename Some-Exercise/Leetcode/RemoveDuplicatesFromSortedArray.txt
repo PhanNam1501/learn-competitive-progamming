@@ -1,0 +1,11 @@
+Đề bài:
+Ta có dãy số: [1,1,2,3,3,4,4,4,5]
+ta phải return về dãy chỉ có duy nhất 1 phần tử, tức là đề bài bảo là return k phần tử đầu tiên của dãy ban đầu sao cho k chính là số phẩn tử unique
+khi đọc bài này ta sẽ nghĩ đến cách 2 pointer
+Phân tích: ở đây lấy ra k phần tử đầu tiên, vậy mỗi phần tử sẽ đại diện cho 1 nhóm
+ta sẽ có 2 tham số là l = 0; r = 0;
+l sẽ có nhiệm vụ đại diện cho vị trí phần tử trong k phần tử đầu tiên
+r sẽ có nhiệm vụ đi quét và nhả về l
+giả sử ban đầu r đang là 1
+nums[l] = nums[r] = 1
+tiếp tục r sẽ quét đến khi nào gặp phần tử khác-> tăng l -> gán tiếp nums[l] = nums[r]

@@ -1,67 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int maxOnes(vector<int>& arr, int k) {
-        int count = 0;
-        vector<int> blank;
-        int idx = 0;
-
-        while (idx < arr.size()) {
-            int x = 0;
-            while (arr[idx] == 1 && idx < arr.size()) {
-                x++;
-                idx++;
-            }
-            count++;
-            if (x!=0) blank.push_back(x);
-
-            int c = 0;
-            while (arr[idx] != 1 && idx < arr.size()) {
-                c++;
-                idx++;
-            }
-            count++;
-            if (c!=0) blank.push_back(c);
+vector<int> getGreater(vector<int> &nums)
+{
+    int n = nums.size();
+    vector<int> res(n);
+    stack<int> st;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        while (!st.empty() && (nums[i] >= nums[st.top()]))
+        {
+            st.pop();
         }
-        queue<int> q;
-        int maxx = 0;
-        int check = 0;
-        int res = 0;
-        int j = 0;
-        if (arr[j] == 1) {
-            j = 1;
+        if (st.empty())
+            res[i] = n;
+        else
+            res[i] = st.top();
+        st.push(i);
+    }
+    for (int i = 0; i < res.size(); i++) {
+        cout << res[i] << "\n";
+    }
+    return res;
+}
+vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
+{
+    unordered_map<int, int> myMap;
+    vector<int> c = getGreater(nums2);
+    for (int i = 0; i < nums2.size(); i++)
+    {
+        int next_id = c[i];
+        if (next_id < nums2.size())
+        {
+            myMap[nums2[i]] = nums2[next_id];
         }
-
-        for (int i = j; i < blank.size(); i+=2) {
-            while(!q.empty() && check >= k) {
-                int temp = q.front();
-                maxx -= (blank[temp-1] + blank[temp]);
-                check -= blank[temp];
-            }
-            
-            check += blank[i];
-            int t = check > k ? check - k : 0;
-            if (i == blank.size() - 2 && t == 0) {
-                maxx += blank[i-1] + blank[i] + blank[i+1];
-            } else {
-                if (j == 0) {
-                    maxx += blank[i];
-                } else {
-                    maxx += blank[i-1] + blank[i];
-                }
-            }
-            q.push(i);
-            
-            res = max(res, maxx - t);
-        }
-        return res;
     }
 
-int main() {
-    vector<int> arr = {0,1,0,0,1,0};
-    int res = maxOnes(arr, 1);
-    cout << res;
-    
+    vector<int> res;
+
+    for (int i = 0; i < nums1.size(); i++)
+    {
+        auto it = myMap.find(nums1[i]);
+        if (it != myMap.end())
+        {
+            res.push_back(it->second);
+        }
+        else
+        {
+            res.push_back(-1);
+        }
+    }
+
+    return res;
 }
 
-
+int main()
+{
+    vector<int> nums1 = {4,1,2};
+    vector<int> nums2 = {1,3,4,2};
+    vector<int> res = nextGreaterElement(nums1, nums2);
+    for (int i = 0; i < res.size(); i++) {
+        cout << res[i] << "\n";
+    }
+}

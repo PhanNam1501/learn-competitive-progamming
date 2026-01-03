@@ -1,0 +1,30 @@
+giải thích đề bài:
+Có một dãy số "AABAABA" và 1 số K
+ta có thể thay thế k kí tự hỏi sau khi thay thế xong thì độ dài lớn nhất dãy mà chỉ có 1 kí tự là bao nhiêu?
+
+ví dụ:
+AABAABA
+Đầu tiên ta sẽ tạo 1 bảng hashmap:
+A | 
+B |
+
+ý tưởng giả sử ta có dãy là AABAAB: lúc này fre(A) = 4, fre(B) = 2 -> A đang là most frequency value -> maxf = 4
+độ dài của dãy hiện tại là 6, tức là nếu mà ta hiện tại có duy nhất 2 phần tử đang khác chữ A,
+
+cách làm
+khởi tạo:
++ l = 0
++ maxf = 0
++ hash_map m
+
+vòng lặp i = 0; i < size(string)
+
+m[s[i]]++ : tăng frequency của kí tự trong dãy hiện tại bắt đầu tại l = 0 và r là i hiện tại
+maxf = max của maxf hiện tại hoặc fre(kí tự hiện tại)
+
+độ dài của dãy hiện tại luôn là r - l + 1
+ta check nếu mà độ dài hiện tại - maxf > k -> có nhiều hơn k kí tự ko trùng với kí tự đang lặp lớn nhất
+ta sẽ tăng l và giảm fre(của kí tự tại ví trí l)
+
+tính maxx hiện tại bằng độ dài hiện tại
+vậy tức là việc check luôn giúp ta kiểm soát được độ dài của dãy luôn đúng

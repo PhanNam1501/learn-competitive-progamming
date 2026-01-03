@@ -1,0 +1,326 @@
+Movie Festival II 
+
+Có N bộ phim được trình chiếu. Bộ phim thứ i sẽ diễn ra vào thời điểm [li .... ri] 
+
+Có K vị giám khảo thẩm định phim, mỗi vị giám khảo tại một thời điểm chỉ được phép coi đúng 1 bộ phim và người nãy sẽ phải coi hết toàn bộ 
+
+bộ phim đó và mỗi bộ phim chỉ cần ít nhất 1 vị ban giám khảo coi. 
+
+Một giám khảo coi bộ phim [l1 ... r1] thì có thể tiếp tục coi bộ phim tiếp theo từ [l2 ... r2] nếu l2 >= r1 
+
+Hỏi có thể có tối đa bao nhiêu bộ phim được các ban giám khảo thẩm định ????? 
+
+
+N = 7, K = 4 
+
+2 5    x  
+1 9    x 
+4 9    x 
+3 15 
+4 7   
+8 10   x
+3 7    x 
+
+
+
+giám khảo 1:  [2 ... 5] ,   [8 ... 10] 
+
+giám khảo 2:  [1 ... 9]
+
+giám khảo 3:  [3 ... 7]
+
+giám khảo 4:  [4 ... 9]
+
+
+Nhận xét 1: Một bộ phim chỉ cần đúng 1 người coi là được 
+
+Nhận xét 2: Thời gian kết thúc của một bộ phim quan trọng =====> ta sẽ ưu tiên coi những bộ phim có thời gian kết thúc từ sớm đến trễ 
+
+=====> Sắp xếp các bộ phim tăng dần theo thời gian kết thúc !!!!!! 
+
+N = 7, K = 4 
+
+2 5       x 
+4 7       x 
+5 7       x 
+3 7       x 
+1 9       x 
+4 9      
+8 10      x 
+3 15 
+
+
+Kho : chứa các thời điểm mà K ông ban giám khảo kết thúc coi phim 
+
+
+Kho = {0, 0, 0, 0, ...., 0} 
+
+
+Kho = {  7, 10, 7, 9   } 
+
+
+Tìm ra được số lớn nhất <= số cho trước ????? 
+
+upper_bound: tìm ra địa chỉ con trỏ trỏ vào phần tử nhỏ nhất > giá trị đang xét
+lower_bound: tìm ra địa chỉ con trỏ trỏ vào phần tử nhỏ nhất >= giá trị đang xét
+
+
+multiset <int>::iterator it = myset.upper_bound(x) 
+it--; 
+
+Mã giả 
+
+Sắp xếp các bộ phim tăng dần theo r 
+
+Đặt ans = 0 
+
+Đặt myset : multiset <int> 
+
+Đưa K số 0 vào myset 
+
+Duyệt từng bộ phim i: 1 -> n 
+  multiset <int>::iterator it = myset.upper_bound(l[i]) 
+  nếu it == myset.begin(): 
+    continue 
+  it-- 
+  ans++ 
+  myset.erase(it) 
+  myset.insert(r[i]) 
+
+------------------------------------------------------------------- 
+
+Median (ICPC miền Bắc) 
+
+Ta có một dãy số a, ban đầu không có phần tử nào cả 
+
+Ta thực hiện Q thao tác, mỗi thao tác gồm 1 trong 3 loại 
+
+Loại 1: ADD x  : thêm số x vào dãy số a 
+
+Loại 2: REMOVE x  :  xóa số x ra khỏi dãy số a 
+
+Loại 3: MEDIAN    : Trả về trung vị của dãy a 
+
+
+Median của dãy số là phần tử ở chính giữa của dãy số a (sau khi sắp xếp tăng dần) nếu dãy a có số lượng số là số lẻ. Nếu số lượng số là số 
+
+chẵn thì trung vị = trung bình cộng của 2 số ở chính giữa của dãy a 
+
+
+a = 2 9 3 8 1      ====>   1 2 3 8 9          ===> 3 
+
+a = 9 9 2 9 10 8 6 7  ===>   2 6 7 8 9 9 9 10    ====> 8.5 
+
+N = 10 
+
+ADD 7 
+ADD 9 
+ADD 6 
+MEDIAN    ----> 7 
+ADD 4 
+REMOVE 7   
+ADD 6 
+MEDIAN    ----> 6 
+ADD 10 
+MEDIAN    ----> 6 
+
+Thuật toán ngây thơ  
+
+Đề yêu cầu sao thì làm y chang như vậy 
+
+
+Thuật toán đúng 
+
+Nhận xét: Ta chỉ quan tâm đến các phần tử ở giữa (sau khi sắp xếp) 
+
+Ta sẽ gọi 2 tập hợp smaller, larger : smaller lưu trữ tập hợp một nửa các số nhỏ nhất đang có và larger lưu một nửa còn lại. 
+
+LƯU Ý: Số lượng phần tử của smaller = số lượng phần tử của larger hoặc Số lượng phần tử của smaller nhiều hơn số lượng phần tử larger 1 đơn vị 
+
+modify() :   chỉnh sửa lại 2 tập hợp cho "cân bằng" 
+  while smaller.size() - larger.size() > 1: 
+    lấy con trỏ trỏ đến số lớn nhất trong smaller 
+    đẩy giá trị đó qua larger 
+    xóa node đó ra khỏi smaller  
+
+  while larger.size() > smaller.size(): 
+    lấy con trỏ begin() của larger 
+    xóa giá trị đó 
+    đưa giá trị đó qua smaller   
+
+ADD x 
+
+  . Nếu smaller rỗng ====> đưa x vào smaller 
+  . Nếu x <= số lớn nhất trong smaller: đưa x vào smaller, modify()   
+  . Nếu x > số lớn nhất trong smaller: đưa x vào larger, modify() 
+   
+REMOVE x 
+
+  . Nếu x có tồn tại trong smaller ====> xóa node = x ra khỏi smaller, modify() 
+  . Nếu x không tồn tại trong smaller ===> xóa node = x ra khỏi larger, modify() 
+
+MEDIAN 
+
+  . Nếu |smaller| > |larger| =====> kết quả là số lớn nhất trong smaller 
+  . Nếu |smaller| = |larger| =====> trung vị = (số lớn nhất trong smaller + số nhỏ nhất trong larger) / 2  
+
+---------------------------------------------------------------------------
+
+Binary Search Tree (map / multimap) 
+
+map / multimap là cấu trúc dữ liệu được tổ chức bên dưới bằng cây Red black tree cho phép lưu trữ các node có dạng <key, value>, trong đó các node được đưa vào cây BST và được so sánh giá trị dựa trên key 
+
+map: các key không được phép giống nhau 
+multimap: các key có thể giống nhau 
+
+Khai báo map 
+
+#include <map> 
+
+Cú pháp: 
+
+map < <kiểu dữ liệu của key>, <kiểu dữ liệu của giá trị> > <tên map>; 
+
+Ví dụ: 
+
+#include <map> 
+
+map <string, int> mymap; 
+
+Một số hàm và operator trong map 
+
+. Operator []:  Đưa một phần tử có key tương ứng và map[key] = value tương ứng.  Độ phức tạp: O(logN)
+
+Ví dụ: 
+
+#include <map> 
+
+map <string, int> mymap;
+
+int main() {
+  mymap["Khoi"] = 30; 
+  mymap["An"] = 15; 
+  mymap["Chau"] = 20; 
+  mymap["Phong"] = 18; 
+  return 0; 
+}
+
+. find(<giá trị khóa>) : Trả về con trỏ trỏ đến địa chỉ của node có khóa tương ứng.  Độ phức tạp: O(logN) 
+
+Lưu ý: nếu không tìm ra, con trỏ sẽ trỏ về map.end() 
+
+
+Ví dụ: 
+
+#include <map> 
+
+map <string, int> mymap;
+
+int main() {
+  mymap["Khoi"] = 30; 
+  mymap["An"] = 15; 
+  mymap["Chau"] = 20; 
+  mymap["Phong"] = 18; 
+  map <string, int>::iterator it = mymap.find("Khoi"); 
+  if (it == mymap.end()) {
+    cout << "Khong ton tai"; 
+  }
+  else {
+    cout << it->first << "    " << it->second; 
+  }
+  return 0; 
+}
+
+
+. Hàm erase(<địa chỉ con trỏ trỏ đến node muốn xóa>) : Xóa node có địa chỉ tương ứng ra khỏi map . Độ phức tạp: O(logN) 
+
+Lưu ý: Nếu địa chỉ là map.end() thì hàm erase sẽ báo lỗi. 
+
+
+Ví dụ: 
+
+#include <map> 
+
+map <string, int> mymap;
+
+int main() {
+  mymap["Khoi"] = 30; 
+  mymap["An"] = 15; 
+  mymap["Chau"] = 20; 
+  mymap["Phong"] = 18; 
+  map <string, int>::iterator it = mymap.find("Khoi"); 
+  if (it == mymap.end()) {
+    cout << "Khong ton tai"; 
+  }
+  else {
+    cout << it->first << "    " << it->second;
+    mymap.erase(it);  
+  }
+  return 0; 
+}
+
+. Hàm upper_bound(<giá trị của khóa>) : Trả về node có giá trị nhỏ nhất > giá trị khóa tương ứng. Độ phức tạp: O(logN) 
+
+Lưu ý: Nếu không tìm ra thì con trỏ sẽ trỏ về map.end() 
+
+
+. Hàm lower_bound(<giá trị của khóa>) : Trả về node có giá trị nhỏ nhất >= giá trị khóa tương ứng. Độ phức tạp: O(logN) 
+
+Lưu ý: Nếu không tìm ra thì con trỏ sẽ trỏ về map.end() 
+
+. Hàm clear(): xóa toàn bộ map 
+
+. Hàm empty(): trả về true / false thể hiện map có rỗng hay không ? 
+
+. Hàm size(): trả về số lượng phần tử trong map 
+
+. Hàm swap(<map khác>): Đổi chỗ 2 map cho nhau. Độ phức tạp O(1) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

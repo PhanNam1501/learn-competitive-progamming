@@ -1,0 +1,21 @@
+Permutation in String
+Giải thích đề bài:
+Ta có:
+Input: s1 = "abc", s2 = "lecabee"
+nếu mà trong s2 có 1 dãy là giao hoán của s1 thì trả về true
+
+Ý tưởng bài toán, ta sẽ tạo 2 vector với ứng với các chữ cái trong bảng chữ cái: vector c1 và c2
+Đầu tiên chạy vòng lặp của s1:
+c1[s1[i]]++;
+c2[s2[i]]++;
+chạy vòng lặp check xem c1 với v2 có trùng nhau ko: tạo 1 biến matches và check xem matches có bằng 26 hay ko
+
+khởi tạo 1 biến l = 0
+chạy vòng lặp cho s2 với vị trí bắt đầu sau độ dài của s1
+
+giả sử chữ tiếp theo là 'a'
+ta sẽ tăng c2['a']++ -> matches++ ví fre('a') của 2 bảng đang bằng nhau nhưng có thể thấy chúng vẫn khác nhay ở 'l' và 'e'
+hiện tại l = 0 tức là giá trị 'l'
+ta sẽ giảm cái này đi để giữ size của sliding-window
+-> c2[s2[l]]--
+check xem nếu mà feet thì matches++, hoặc nếu trước đấy cno bằng nhau mà hiện tại ko bằng thì --
