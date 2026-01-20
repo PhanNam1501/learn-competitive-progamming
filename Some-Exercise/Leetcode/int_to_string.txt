@@ -1,0 +1,7 @@
+int x = 100;
+string s = to_string(x);
+
+vector<string> digits;
+for (char c : s) {
+    digits.push_back(string(1, c));
+}

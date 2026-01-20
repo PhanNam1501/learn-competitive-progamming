@@ -1,0 +1,208 @@
+Tháng 2 (Basic Techinques) 
+
+- Buổi 1: Bit manipulation 
+- Buổi 2: Two pointers 
+- Buổi 3: Sàng nguyên tố Erathones 
+- Buổi 4: Tìm kiếm nhị phân + Tìm kiếm nhị phân trên kết quả 
+- Buổi 5: Chặt tam phân 
+- Buổi 6: Greedy 
+- Buổi 7: Đệ quy + Backtracking 
+- Buổi 8: Contest 
+
+
+Bit manipulation 
+
+Khi chiếc máy tính đầu tiên ra đời, chiếc máy tính chỉ hiểu được các giá trị 0 và 1 
+
+Những mã mà chỉ gồm 2 giá trị 0 và 1 được gọi là mã nhị phân 
+
+
+Hệ nhị phân: 0 và 1 
+
+Hệ thập phân: 0 1 2 3 4 .... 9 
+
+Hệ bát phân: 0 1 2 3 ... 7 
+
+
+Hệ nhị phân là một hệ cơ số chỉ có 2 ký tự 0 và 1 
+
+Số thập phân  ---> Số nhị phân 
+
+0                   0 
+1                   1 
+2                   10
+3                   11
+4                   100
+5                   101
+................
+
+
+Phép toán đổi số thập phân sang số nhị phân 
+
+126 --->   1111110
+
+75  --->   1001011 
+
+convertToBinary(n): 
+  đặt bin = "" 
+  while n > 0: 
+    bin += (char) (n % 2 + '0') 
+    n = n / 2 
+  reverse(bin.begin(), bin.end()) 
+  return bin   
+
+
+Phép toán đổi nhị phân sang thập phân 
+
+Ta đánh số các bit từ 0 theo thứ tự từ phải sang trái 
+
+Kết quả = tổng các bit * 2^(vị trí của bit) 
+
+1001011   ----> 1 * 2^0 + 1 * 2^1 + 0 * 2^2 + 1 * 2^3 + 0 * 2^4 + 0 * 2^5 + 1 * 2^6 = 1 + 2 + 0 + 8 + 0 + 0 + 64 = 75
+
+
+Phép cộng 2 số nhị phân 
+
+Cộng 2 số thập phân 
+  123 
++ 489 
+-----  
+  612 
+
+
+Cộng 2 số nhị phân 
+
+   010011           (19)
++  110110           (54)
+---------
+  1001001           (1 * 2^0 + 1 * 2^3 + 1 * 2^6 = 1 + 8 + 64 = 73)
+
+
+Phép trừ, phép nhân, phép chia cũng sẽ cùng một cơ chế giống số thập phân 
+
+Một số phép toán xử lý bit 
+
+Phép AND  (ký hiệu &) 
+
+Khi ta có 2 dãy bit (có cùng số bit), phép AND là một phép cho ra một dãy bit kết quả với từng bit tương ứng như sau 
+
+Xét từng bit, nếu 2 bit cùng = 1 thì kết quả phép AND = 1, nếu 1 trong 2 = 0 thì kết quả = 0 
+
+   010011           (19)
+&  110110           (54)
+----------
+   010010           (18)
+
+
+19 & 54 = 18 
+
+
+long long a = 19; 
+long long b = 54; 
+long long c = a & b; 
+
+
+
+long long : 8 byte  ====> 64 bit   (-2^63 .... 2^63 - 1)
+
+64 bit 
+
+sử dụng bit thứ 64 làm bit dấu   (= 0 : dấu dương, = 1 là dấu âm)
+
+
+10001101101111011010110001 
+
+
+
+000000000000000000000000001
+
+
+Phép OR  (ký hiệu |) 
+
+Khi ta có 2 dãy bit (có cùng số bit), phép OR là một phép cho ra một dãy bit kết quả với từng bit tương ứng như sau 
+
+Xét từng bit, nếu 2 bit cùng = 0 thì kết quả phép OR = 0, nếu 1 trong 2 = 1 thì kết quả = 1 
+
+   010011           (19)
+&  110110           (54)
+----------
+   110111           (55)
+
+
+19 | 54 = 55 
+
+
+Phép XOR  (ký hiệu ^) 
+
+Khi ta có 2 dãy bit (có cùng số bit), phép XOR là một phép cho ra một dãy bit kết quả với từng bit tương ứng như sau 
+
+Xét từng bit, nếu 2 bit khác nhau thì kết quả phép XOR = 1, nếu 2 bit giống nhau thì kết quả = 0 
+
+   010011           (19)
+^  110110           (54)
+----------
+   100101           (37)
+
+
+19 ^ 54 = 37 
+
+
+Phép dịch bit sang trái (ký hiệu << ) 
+
+Một số x khi được yêu cầu dịch sang trái K bit thì các bit tương ứng trong x sẽ được đánh số lại theo vị trí + K. Các vị trí được chèn thêm sẽ chèn các bit 0 
+
+x = 10     = 2^1 + 2^3 
+
+10100000   = 2^5 + 2^7 = 2^4 * (2^1 + 2^3)
+
+(1010)
+
+1010 ----->    10100000
+
+cout << (x << 4); 
+
+x dịch sang bên trái K đơn vị  tương đương x ---> x * (2^K) 
+
+
+Phép dịch bit sang trái (ký hiệu >> ) 
+
+Một số x khi được yêu cầu dịch sang trái K bit thì các bit tương ứng trong x sẽ được đánh số lại theo vị trí - K. Các vị trí sau khi trừ K bị âm thì coi như không tồn tại 
+
+x = 10     
+
+(1010)
+
+1010 ----->   10 
+
+cout << (x >> 2); 
+
+x dịch sang bên phải K đơn vị  tương đương x ---> x / (2^K) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

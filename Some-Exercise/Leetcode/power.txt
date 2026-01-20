@@ -1,0 +1,10 @@
+long long power(int base, int exp, int mod) {
+        long long result = 1, b = base;
+        while (exp > 0) {
+            if (exp & 1) result = (result * b) % mod;
+            b = (b * b) % mod;
+            exp >>= 1;
+        }
+
+        return result;
+    }
