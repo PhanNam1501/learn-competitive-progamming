@@ -1,0 +1,345 @@
+Video cards: 
+
+Cho một dãy số a gồm N số nguyên dương. 
+
+Ta sẽ chọn một số a[i] bất kỳ làm mốc, ta sẽ biến đổi các số trong dãy về thành số nguyên dương lớn nhất <= số đó sao cho số đó chia hết
+
+cho mốc 
+
+Hỏi: Tổng lớn nhất có thể tạo ra là bao nhiêu 
+
+Ví dụ: 
+
+N = 10 
+
+8 2 9 9 6 4 10 11 17 
+
+1 <= n, a[i] <= 200000 
+
+
+Giả sử ta chọn mốc = v 
+
+Những giá trị x nằm trong đoạn [i * v ...... (i + 1) * v - 1] thì những giá trị này sẽ biến về thành i * v 
+
+
+Khi ta có một đoạn [L ... R] thì ta cần đếm được số lượng số có giá trị nằm trong đoạn [L .... R] MỘT CÁCH NHANH CHÓNG
+
+Ý tưởng 
+
+8 2 9 9 4 4 10 4 11 17 
+
+
+Duyệt i: 1 -> N 
+  count[a[i]]++ 
+
+Gọi count[x] : số lượng số có giá trị = x 
+
+count[8] = 1 
+count[2] = 1 
+count[9] = 2 
+count[4] = 3
+count[10] = 1 
+count[11] = 1 
+count[17] = 1 
+
+Gọi sum[x] là số lượng số có giá trị <= x 
+
+sum[5] = 4 
+sum[8] = 5 
+
+sum[0] = 0 
+
+Duyệt x: 1 -> 200000 
+  sum[x] = sum[x - 1] + count[x]
+
+Với một đoạn [4 .... 10] : sum[10] - sum[3] 
+
+Tổng quát: Khi có một đoạn [L ... R] ====> số lượng số trong đoạn [L ... R] : sum[R] - sum[L - 1]
+
+đặt check[v] = true / false: giá trị v đã được chọn hay chưa ???? 
+đặt ans = 0 
+Xét từng giá trị a[i] trong dãy, đặt v = a[i]  
+  nếu check[v] == true: 
+    continue 
+  check[v] = true    
+  đặt sum = 0 
+  Duyệt j: v -> 200000, j = j + v 
+    Xét đoạn [j .... j + v - 1] 
+    Số lượng số trong đoạn [j ... j + v - 1] : cnt = sum[j + v - 1] - sum[j - 1]   
+    sum += j * cnt 
+  ans = max(ans, sum) 
+
+
+8 2 9 9 4 4 10 4 11 17 
+
+sum[15] = 9
+sum[7] = 4 
+
+v = 8,  
+
+j = 8 : [8 .. 15] ===> có 5 phần tử ===> cả 5 phần tử đều phải biến đổi về thành 8 ====> 8 * 5 = 40 
+
+j = 16 : [16 ... 23] ===> có 1 phần tử ===> 1 phần tử này phải biến đổi về thành 16 ====> 16 * 1 = 16 
+
+
+a = 1 2 3 4 5 6 7 .... 200000 
+
+v = 1: j duyệt 200000/1 
+v = 2: j duyệt 200000/2
+v = 3: j duyệt 200000/3 
+
+....
+v = 200000 : j duyệt 200000/200000 
+
+====> Tổng chi phí: 200000/1 + 200000/2 + .... + 200000/200000 < 200000.ln(200000)
+
+------------------------------------------------------------------------------
+
+Colliders 
+
+Có một hệ thống để thêm hoặc bớt phần tử 
+
+Đối với thao tác thêm 
+
+  + i 
+    . success : phần tử có giá trị i chưa xuất hiện trong hệ thống và không bị conflict với một phần tử nào đang có trong hệ thống 
+    . already on : phần tử có giá trị i đã xuất hiện trong hệ thống rồi. 
+    . conflict with j : có một giá trị j nào đó đang có trong hệ thống sao cho gcd(i, j) > 1 
+
+  - i
+    . success : phần tử i đang có trong hệ thống và giờ được xóa khỏi hệ thống 
+    . already off : phần tử i hiện không có trong hệ thống 
+
+Nhận xét: 
+
+Các số <= 100000 chỉ có tối đa 7 ước nguyên tố 
+Các số <= 1000000 chỉ có tối đa 8 ước nguyên tố 
+
+100 = 2^2 * 5^2   ===> {2, 5} 
+40 = 2^3 * 5  ===> {2, 5} 
+
+
+Với mỗi số x (x: 1 -> 100000), ta sẽ liệt kê các ước nguyên tố của x 
+
+Ta sàng nguyên tố để được mảng isPrime[p] = true : p là số nguyên tố, = false nếu p không phải là số nguyên tố 
+
+vector <int> list_prime[100005]; 
+
+Gọi list_primes[x] : danh sách các ước nguyên tố của số x 
+
+Ta duyệt p: 1 -> 100000 
+  nếu isPrime[p] == true 
+    for j: p -> 100000, j = j + p 
+      list_primes[j].push_back(p) 
+
+Gọi check[x] = true / false : giá trị x có đang được xuất hiện trong tập hợp hay không ??? 
+
+Gọi numb[p] : giá trị x nào đó trong hệ thống mà có ước nguyên tố là p, nếu không có số nào nhận p làm ước nguyên tố thì numb[p] = -1 
+
+Thao tác + i 
+ 
+  nếu check[i] == true: xuất ra already on  
+  else: 
+    Duyệt từng ước nguyên tố p trong list_primes[i] 
+      nếu numb[p] != -1 
+        báo cáo conflict with numb[p] 
+        break 
+    Nếu không bị conflict: 
+      xuất ra success 
+      check[i] = true 
+      Duyệt các ước nguyên tố p trong list_primes[i]
+        numb[p] = i 
+
+Thao tác - i 
+ 
+  nếu check[i] == false: xuất ra already off 
+  else: 
+    xuất ra success  
+    check[i] = false 
+    Duyệt các ước nguyên tố p trong list_primes[i]: 
+      numb[p] = -1
+
+--------------------------------------------------------------------------------------------- 
+
+Thuật toán tìm kiếm nhị phân (Binary Search) 
+
+Xét bài toán tìm kiếm 
+
+Cho một dãy số a gồm N phần tử. cho một số nguyên dương x, hãy tìm vị trí của số x trong dãy số ????? 
+
+a = 9 10 5 2 6 6 4 8 7 3 15 
+
+x = 16 
+
+Duyệt i: 1 -> N 
+  nếu a[i] == x: 
+    lập tức báo cáo vị trí của x là i 
+    DỪNG THUẬT TOÁN 
+
+Độ phức tạp: O(N) 
+
+Đây được gọi là thuật toán tìm kiếm tuần tự 
+
+
+Nếu dãy số a là dãy số đã được sắp xếp tăng dần
+
+a = 2 3 3 5 5 6 6 7 8 9 10 15 
+
+x = 4 
+
+lo = 1 
+hi = 12
+mid = (lo + hi) / 2 = 6
+
+x = 4 < 6 
+
+lo = 1 
+hi = 6
+mid = (lo + hi) / 2 = 3 
+
+x = 4 > 3 
+
+lo = 4 
+hi = 6 
+mid = (lo + hi) / 2 = 5 
+
+lo = 4 
+hi = 4 
+mid = (lo + hi) / 2 = 4 
+
+lo = 1, hi = n 
+while lo <= hi: 
+  đặt mid = (lo + hi) / 2 
+  nếu x == a[mid]: 
+    báo cáo vị trí x là mid 
+    DỪNG THUẬT TOÁN 
+  nếu x < a[mid]   
+    hi = mid - 1 
+  else: 
+    lo = mid + 1 
+
+Báo cáo x không xuất hiện trong dãy 
+
+Độ phức tạp của thuật toán tìm kiếm nhị phân ???? 
+
+Mỗi lần tìm kiếm, ta chỉ quan tâm một nửa bên trái hoặc nửa bên phải, mỗi lần tìm kiếm, ta chỉ quan tâm một nửa, sau đó tiếp tục quan 
+
+tâm đến một nửa của một nửa đó, ..... 
+
+
+====> Số lần bị giảm một nửa cho đến khi dãy số chỉ còn 1 phần tử ~ log(N) 
+
+Độ phức tạp cho 1 lần tìm kiếm: O(logN)
+
+-----------------------------------------------------------------------
+
+Hidden Number (Interactive - lập trình tương tác) 
+
+Hệ thống chấm có một con số x nào đó và không cho ta biết đó là con số nào. Ta biết x thuộc đoạn [1 .... 10^9] 
+
+Ta sẽ cần hỏi hệ thống máy chấm các câu hỏi có dạng như sau: 
+
+Ta hỏi ? y : ta hỏi y có < x hay không 
+
+hệ thống sẽ cho ta biết "YES" nếu y < x, "NO" khi y >= x 
+
+Ta cần tìm ra được số x trong không quá 30 câu hỏi ?????? 
+
+
+
+x = 100 
+
+? 1000 ---> NO  
+
+? 500  ---> NO 
+
+? 1    ---> YES 
+
+? 100  ---> NO 
+
+! 123  ---> WRONG ANSWER 
+
+
+
+int x = 10; 
+
+for (int i = 1; i <= 100; i++) {
+  cout << "? " << i << endl; 
+  fflush(stdout); 
+  string ans; 
+  cin >> ans; 
+  if (ans == "YES") {
+    x = i; 
+    break; 
+  }
+}
+
+cout << "! " << x << endl; 
+fflush(stdout); 
+
+
+
+x thuộc [1 ... 10^9] 
+
+Đặt lo = 1, hi = 10^9 
+đặt x 
+while lo <= hi: 
+  đặt y = (lo + hi) / 2 
+  Hỏi y 
+  Ta nhận ans 
+  nếu ans == "YES" 
+    lo = y + 1 
+  else
+    x = y 
+    hi = y - 1     
+
+---------------------------------------------------------------------------
+
+Eko 
+
+Nhận xét: Mức cưa cây càng cao thì tổng lượng gỗ càng nhỏ, mức cưa cây càng thấp thì tổng lượng gỗ càng nhiều 
+
+Mức cưa cây là một con số nào đó nằm trong đoạn [ 0 ..... maxH - 1 ]  maxH : độ cao của cây lớn nhất 
+
+
+lo = 0, hi = maxH - 1 
+
+while lo <= hi: 
+  Đặt mid = (lo + hi) / 2 
+
+  đặt totalWood = 0 
+  Duyệt i: 1 -> N 
+    nếu h[i] > mid: 
+      totalWood += h[i] - mid 
+
+  Nếu totalWood >= M 
+    ans = mid 
+    lo = mid + 1 
+  else: 
+    hi = mid - 1   
+
+Độ phức tạp: O(28 * N) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
